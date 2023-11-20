@@ -115,44 +115,32 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create an object of any class"""
+        params = args.split()
+
         if not args:
             print("** class name missing **")
             return
-        # Parse the input
-        parts = args.split()
-        class_name = parts[0]
-        params = parts[1:]
-
-        # Check if the class exists
-        if class_name not in HBNBCommand.classes:
-            print("** Class doesn't exist **")
+        elif params[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
             return
-
-        # Create an instance of the class
-        new_instance = HBNBCommand.classesclass_name
-
-        # Process parameters
-        for param in params:
-            key, value = param.split('=')
-            # Replace underscores with spaces
-            key = key.replace('_', ' ')
-            try:
-                if value.startswith('"') and value.endswith('"'):
-                    # String value
-                    value = value[1:-1]
-                elif '.' in value:
-                    # Float value
-                    value = float(value)
-                else:
-                    # Integer value
-                    value = int(value)
-                setattr(new_instance, key, value)
-            except (ValueError, AttributeError):
-                # Skip invalid parameters
-                pass
-        storage.save()
+        new_instance = HBNBCommand.classes[params[0]]()
+        kv_dict = {}
+        for i in params[1:]:
+            kv = i.split('=')
+            if '"' in kv[1]:
+                value = kv[1].replace('"', '').replace('_', ' ')
+                kv_dict[kv[0]] = value
+            else:
+                try:
+                    if '.' in kv[1]:
+                        kv_dict[kv[0]] = float(kv[1])
+                    else:
+                        kv_dict[kv[0]] = int(kv[1])
+                except ValueError:
+                    pass
+        new_instance.__dict__.update(kv_dict)
+        new_instance.save()
         print(new_instance.id)
-        storage.save()
 
     def help_create(self):
         """ Help information for the create method """
