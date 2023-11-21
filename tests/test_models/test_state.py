@@ -1,19 +1,21 @@
 #!/usr/bin/python3
 """ """
-from tests.test_models.test_base_model import test_basemodel
-from models.state import State
+from tests.test_models.test_base_model import TestBasemodel
+from models.city import City
+import os
 
-
-class test_state(test_basemodel):
-    """ """
+class TestState(TestBasemodel):
+    """Test model for state"""
 
     def __init__(self, *args, **kwargs):
-        """ """
+        """Test calls Initialization"""
         super().__init__(*args, **kwargs)
-        self.name = "State"
-        self.value = State
+        self.args = args
+        self.kwargs = kwargs
 
-    def test_name3(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.name), str)
+    def TestName(self):
+        """Type of name testing"""
+        n = self.value()
+        self.assertEqual(type(n.name),
+            str if os.getenv('HBNB_TYPE_STORAGE') != 'db' else type(None)
+        )
