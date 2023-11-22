@@ -5,6 +5,7 @@ from models.base_model import BaseModel, Base
 import models
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship
+from models.city import City
 
 class State(BaseModel, Base):
     """ State class """
