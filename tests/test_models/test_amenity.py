@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """ """
-from tests.test_models.test_base_model import test_basemodel
+from tests.test_models.test_base_model import TestBasemodel
 from models.amenity import Amenity
 import os
+import sys
 
 class TestAmenity(TestBasemodel):
     """Represent the test for the Amenity model."""

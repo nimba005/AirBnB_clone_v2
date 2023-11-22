@@ -4,7 +4,7 @@ from models.base_model import BaseModel, Base, Column, String
 import os
 from sqlalchemy.orm import relationship
 from sqlalchemy import Float, Table
-from models.base_model import Integer, Foreignkey
+from models.base_model import Integer, ForeignKey
 
 place_amenity = Table('place_amenity', Base.metadata,
                        Column('place_id', String(60),

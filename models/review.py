@@ -19,6 +19,6 @@ class Review(BaseModel, Base):
             'User', back_populates='reviews') # cascade? slave
 
     else:
-    place_id = ""
-    user_id = ""
-    text = ""
+        place_id = ""
+        user_id = ""
+        text = ""

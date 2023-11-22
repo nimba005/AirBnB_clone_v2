@@ -2,12 +2,12 @@
 """
 This module defines a class User
 """
-from models.base_model import BaseModel
-from os import environ
+import os
+from models.base_model import BaseModel, Base, Column, String
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from sqlalchemy import create_engine, Column, Integer, String
 
-storage_engine = environ.get("HBNB_TYPE_STORAGE")
+Base = declarative_base()
 
 class User(BaseModel, Base):
     """
