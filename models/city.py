@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 """ City Module for HBNB project """
-from models.base_model import BaseModel, Base, Column, String, ForeignKey
 import os
+from models.base_model import BaseModel, Base, Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
 class City(BaseModel, Base):
-    """ The city class, contains state ID and name """
+    """ The city class, contains state ID and name
+    """
     __tablename__ = 'cities'
 
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':

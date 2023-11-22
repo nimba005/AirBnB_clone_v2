@@ -3,7 +3,7 @@
 This module defines a class User
 """
 import os
-from models.base_model import BaseModel, Base, Column, String
+from models.base_model import BaseModel, Base, Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -15,7 +15,6 @@ class User(BaseModel, Base):
     """
     __tablename__ = 'users'
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
-        username = Column(String(128), nullable=False)
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
         first_name = Column(String(128), nullable=False)
