@@ -19,7 +19,7 @@ state_2.save()
 city_1_1 = City(state_id=state_1.id, name="Napa")
 print("New city: {} in the state: {}".format(city_1_1, state_1))
 city_1_1.save()
-city_1_2 = City(state_id=state_1.id, name="sonoma")
+city_1_2 = City(state_id=state_1.id, name="Sonoma")
 print("New city: {} in the state: {}".format(city_1_2, state_1))
 city_1_2.save()
 city_2_1 = City(state_id=state_2.id, name="Page")
@@ -33,5 +33,5 @@ print("")
 all_states = storage.all(state)
 for state_id, state in all_states.items():
     for state_id, state in all_states.items():
-        for city in states.cities:
+        for city_id, city in state.cities.items():
             print("Find the city {} in the state {}".format(city, state))
