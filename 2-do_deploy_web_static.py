@@ -1,4 +1,4 @@
-#!/usr/in/python3
+#!/usr/bin/python3
 """
 Fabric script to deploy tgz archive
 """
@@ -9,7 +9,7 @@ env.hosts = ['54.90.33.211', '54.165.228.84']
 
 def do_deploy(archive_path):
     """
-    copies archive file from local to my webservers
+    Copies archive file from local to my webservers
     """
     if not exists(archive_path):
         return False
@@ -19,12 +19,12 @@ def do_deploy(archive_path):
 
         run("mkdir -p /data/web_static/releases/{}".format(file_name))
 
-        run("tar -xzf /tmp/{}.tgz -C /data/web_static/releases/{}/".format(file_name,
-            file_name))
+        run("tar -xzf /tmp/{}.tgz -C /data/web_static/releases/{}/"
+            .format(file_name, file_name))
 
-        run(('rm -rf /tmp/{}.tgz'.format(file_name))
+        run('rm -rf /tmp/{}.tgz'.format(file_name))
 
-        run('mv /data/web_static/releases/{}/web_static/* ' +
+        run(('mv /data/web_static/releases/{}/web_static/* ' +
             '/data/web_static/releases/{}/').format(file_name, file_name))
 
         run('rm -rf /data/web_static/releases/{}/web_static'.format(file_name))
