@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 # Routing to the path '/'
-@app.route('/', strict_slashes=False)
+@app.route('/airbnb-onepage', strict_slashes=False)
 def hello_hbnb():
     """Return Hello HBNB"""
     return "Hello HBNB!"
@@ -17,4 +17,5 @@ def hello_hbnb():
 
 # Make it listen to other machines
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    from gunicorn import Gunicorn
+    Gunicorn(app).run(host='0.0.0.0', port=8888)
